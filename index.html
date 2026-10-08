@@ -1,42 +1,216 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Jaylin's Library</title>
 
 <style>
 
 body{
-    background-color:#2d1b0f;
-    color:#f5e6c8;
-    font-family:Georgia, serif;
-    text-align:center;
     margin:0;
-    padding:0;
+    min-height:100vh;
+
+    background:
+        linear-gradient(to bottom,
+        #2b1308 0%,
+        #3a1a0c 60%,
+        #59331d 100%);
+
+    color:#f7e8c6;
+    font-family:Georgia, serif;
 }
+
+/* HEADER */
 
 .header{
-    padding:50px;
-}
-
-h1{
-    color:gold;
-    font-size:56px;
-}
-
-.library-room{
-    background:#4a2c17;
-    margin:40px auto;
-    width:80%;
-    border:5px solid #8b6b3e;
-    border-radius:15px;
+    text-align:center;
     padding:30px;
 }
 
-.section{
-    margin:20px;
+.library-title{
+    font-size:4rem;
+    color:gold;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    font-size:1.4rem;
+}
+
+/* MAIN ROOM */
+
+.room{
+    width:90%;
+    max-width:1400px;
+    margin:auto;
+    padding-bottom:40px;
+}
+
+/* BANNER */
+
+.banner{
+    background:linear-gradient(to right,#5f0011,#850019,#5f0011);
+    color:#ffd700;
+
+    text-align:center;
+
     padding:20px;
-    background:#5f3a1d;
+
+    border:4px solid gold;
+    border-radius:15px;
+
+    font-size:2rem;
+    font-weight:bold;
+
+    box-shadow:0 0 20px rgba(255,215,0,.35);
+
+    margin-bottom:30px;
+}
+
+/* TOP SECTION */
+
+.top-row{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+/* DRAGON EGG */
+
+.egg-card{
+    flex:1;
+    min-width:250px;
+
+    background:#4e2d18;
+    border:3px solid #8d6e42;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    text-align:center;
+}
+
+.egg{
+    font-size:6rem;
+}
+
+/* FIREPLACE */
+
+.fireplace{
+    flex:2;
+    min-width:300px;
+
+    background:#4e2d18;
+
+    border:3px solid #8d6e42;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    text-align:center;
+}
+
+.fire{
+    font-size:4rem;
+}
+
+/* STAT PLAQUES */
+
+.stats{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+    margin-top:30px;
+}
+
+.plaque{
+
+    background:#72502f;
+
+    border:3px solid #b69058;
+
+    border-radius:12px;
+
+    padding:18px;
+
+    text-align:center;
+}
+
+.plaque-title{
+    font-size:1.1rem;
+}
+
+.plaque-number{
+    font-size:2rem;
+    color:gold;
+    font-weight:bold;
+}
+
+/* LIBRARY SHELVES */
+
+.shelves{
+
+    margin-top:35px;
+
+    background:#3d2414;
+
+    border:4px solid #8d6e42;
+
+    border-radius:15px;
+
+    padding:25px;
+}
+
+.shelf-title{
+    text-align:center;
+    font-size:2rem;
+    color:gold;
+    margin-bottom:20px;
+}
+
+.bookshelf{
+    height:90px;
+
+    background:#734726;
+
+    border:4px solid #4f2d16;
+
     border-radius:10px;
+
+    margin-bottom:25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:1.2rem;
+}
+
+/* READING CHAIR */
+
+.chair{
+    margin-top:30px;
+
+    text-align:center;
+
+    font-size:5rem;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+
+    padding:40px;
+
+    opacity:.8;
 }
 
 </style>
@@ -46,36 +220,130 @@ h1{
 <body>
 
 <div class="header">
-    <h1>📚 Jaylin's Library</h1>
 
-    <h2>
-        Welcome to the Grand Library of Jaylin Faith Burpee
-    </h2>
+    <div class="library-title">
+        📚 Jaylin's Library
+    </div>
 
-    <p>
-        Every book adds a little magic to the library.
-    </p>
+    <div class="subtitle">
+        Every book adds a little magic.
+    </div>
+
 </div>
 
-<div class="library-room">
+<div class="room">
 
-    <div class="section">
-        📖 Currently Reading
-        <br>
-        0 Books
+    <div class="banner">
+        🌟 Young Reader 🌟
     </div>
 
-    <div class="section">
-        📚 Books Read This Year
-        <br>
-        0 Books
+    <div class="top-row">
+
+        <div class="egg-card">
+
+            <h2>Dragon Egg</h2>
+
+            <div class="egg">
+                🥚
+            </div>
+
+            <p>
+                Read 10 books to hatch your dragon!
+            </p>
+
+        </div>
+
+        <div class="fireplace">
+
+            <h2>Grand Fireplace</h2>
+
+            <div class="fire">
+                🔥
+            </div>
+
+            <p>
+                Welcome to the Grand Library of
+                Jaylin Faith Burpee
+            </p>
+
+        </div>
+
     </div>
 
-    <div class="section">
-        🛒 Wishlist
-        <br>
-        Parents Only
+    <div class="stats">
+
+        <div class="plaque">
+            <div class="plaque-title">
+                📖 Currently Reading
+            </div>
+
+            <div class="plaque-number">
+                0
+            </div>
+        </div>
+
+        <div class="plaque">
+            <div class="plaque-title">
+                📚 Books Read This Year
+            </div>
+
+            <div class="plaque-number">
+                0
+            </div>
+        </div>
+
+        <div class="plaque">
+            <div class="plaque-title">
+                🎧 Audiobooks
+            </div>
+
+            <div class="plaque-number">
+                0
+            </div>
+        </div>
+
+        <div class="plaque">
+            <div class="plaque-title">
+                ⭐ Wishlist
+            </div>
+
+            <div class="plaque-number">
+                0
+            </div>
+        </div>
+
     </div>
+
+    <div class="shelves">
+
+        <div class="shelf-title">
+            Library Shelves
+        </div>
+
+        <div class="bookshelf">
+            📚 Read Books Shelf
+        </div>
+
+        <div class="bookshelf">
+            📖 Currently Reading Shelf
+        </div>
+
+        <div class="bookshelf">
+            🛒 Wishlist Shelf
+        </div>
+
+    </div>
+
+    <div class="chair">
+        🪑
+    </div>
+
+</div>
+
+<div class="footer">
+
+    Future additions:
+    dragons • achievements • reviews • visitors • recommendations • magical rooms
 
 </div>
 
