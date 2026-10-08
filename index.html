@@ -569,7 +569,449 @@ body {
     }
 
 }
+/* =====================================================
+   LIVING HALL EFFECTS
+===================================================== */
 
+/* ---------- FIREPLACE FLICKER ---------- */
+
+.fire-flicker {
+    position: absolute;
+
+    left: 43.5%;
+    top: 60%;
+
+    width: 13%;
+    height: 15%;
+
+    border-radius: 50% 50% 20% 20%;
+
+    background:
+        radial-gradient(
+            ellipse at center bottom,
+            rgba(255, 240, 135, 0.85) 0%,
+            rgba(255, 143, 35, 0.60) 30%,
+            rgba(255, 62, 5, 0.25) 55%,
+            transparent 75%
+        );
+
+    filter: blur(7px);
+
+    mix-blend-mode: screen;
+
+    pointer-events: none;
+
+    z-index: 3;
+
+    animation:
+        fireFlicker 0.18s infinite alternate,
+        fireGlow 2.2s infinite ease-in-out;
+}
+
+.fire-flicker::before,
+.fire-flicker::after {
+    content: "";
+
+    position: absolute;
+    bottom: 5%;
+
+    width: 34%;
+    height: 75%;
+
+    border-radius: 50% 50% 35% 35%;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(255, 65, 0, 0.15),
+            rgba(255, 191, 55, 0.6),
+            rgba(255, 246, 170, 0.2),
+            transparent
+        );
+
+    filter: blur(5px);
+
+    transform-origin: bottom center;
+}
+
+.fire-flicker::before {
+    left: 18%;
+
+    animation:
+        flameLeft 0.75s infinite alternate ease-in-out;
+}
+
+.fire-flicker::after {
+    right: 18%;
+
+    animation:
+        flameRight 0.62s infinite alternate ease-in-out;
+}
+
+@keyframes fireFlicker {
+
+    0% {
+        opacity: 0.55;
+        transform: scale(0.94, 0.91);
+    }
+
+    100% {
+        opacity: 0.95;
+        transform: scale(1.07, 1.10);
+    }
+}
+
+@keyframes fireGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 25px rgba(255, 105, 25, 0.3),
+            0 0 55px rgba(255, 92, 10, 0.15);
+    }
+
+    50% {
+        box-shadow:
+            0 0 38px rgba(255, 162, 45, 0.55),
+            0 0 78px rgba(255, 85, 10, 0.25);
+    }
+}
+
+@keyframes flameLeft {
+
+    from {
+        transform:
+            rotate(-7deg)
+            scaleY(0.75);
+    }
+
+    to {
+        transform:
+            rotate(6deg)
+            scaleY(1.12);
+    }
+}
+
+@keyframes flameRight {
+
+    from {
+        transform:
+            rotate(8deg)
+            scaleY(1.08);
+    }
+
+    to {
+        transform:
+            rotate(-5deg)
+            scaleY(0.72);
+    }
+}
+
+
+/* ---------- DRAGON MOVEMENT ---------- */
+
+/*
+   This creates a subtle magical glow and breathing motion
+   over the current dragon.
+
+   Because the dragon is part of the JPG, the dragon pixels
+   cannot move independently yet. This effect makes the
+   dragon area appear more alive until we add a separate
+   transparent dragon image.
+*/
+
+.dragon-life {
+    position: absolute;
+
+    left: 68%;
+    top: 63%;
+
+    width: 15%;
+    height: 20%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255, 196, 72, 0.09),
+            rgba(255, 91, 22, 0.05),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    z-index: 4;
+
+    animation:
+        dragonBreathing 3.6s infinite ease-in-out,
+        dragonGlow 2.7s infinite ease-in-out;
+}
+
+.dragon-life::after {
+    content: "✨";
+
+    position: absolute;
+    top: 12%;
+    right: 8%;
+
+    color: #ffe79a;
+    font-size: clamp(0.8rem, 1.4vw, 1.5rem);
+
+    opacity: 0;
+
+    animation:
+        dragonSparkle 4.5s infinite ease-in-out;
+}
+
+@keyframes dragonBreathing {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-4px)
+            scale(1.025);
+    }
+}
+
+@keyframes dragonGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 10px rgba(255, 174, 56, 0.08);
+    }
+
+    50% {
+        box-shadow:
+            0 0 25px rgba(255, 174, 56, 0.25);
+    }
+}
+
+@keyframes dragonSparkle {
+
+    0%,
+    65%,
+    100% {
+        opacity: 0;
+        transform:
+            translate(0, 0)
+            scale(0.5);
+    }
+
+    75% {
+        opacity: 1;
+        transform:
+            translate(-8px, -10px)
+            scale(1);
+    }
+
+    90% {
+        opacity: 0;
+        transform:
+            translate(-18px, -25px)
+            scale(0.7);
+    }
+}
+
+
+/* ---------- TIME-OF-DAY WINDOWS ---------- */
+
+.window-sky {
+    position: absolute;
+
+    top: 18%;
+    left: 34%;
+
+    width: 27%;
+    height: 25%;
+
+    pointer-events: none;
+
+    z-index: 2;
+
+    opacity: 0.72;
+
+    transition:
+        background 1.5s ease,
+        box-shadow 1.5s ease,
+        opacity 1.5s ease;
+}
+
+/* Morning sunrise */
+
+.hall-scene.sunrise .window-sky {
+    background:
+        radial-gradient(
+            circle at 50% 85%,
+            rgba(255, 221, 131, 0.70),
+            rgba(255, 136, 78, 0.38) 30%,
+            rgba(113, 86, 160, 0.18) 60%,
+            transparent 78%
+        );
+
+    box-shadow:
+        0 0 55px rgba(255, 169, 84, 0.3);
+}
+
+/* Daytime */
+
+.hall-scene.daytime .window-sky {
+    background:
+        radial-gradient(
+            circle at 55% 30%,
+            rgba(255, 249, 195, 0.35),
+            rgba(93, 179, 255, 0.25) 40%,
+            transparent 75%
+        );
+
+    box-shadow:
+        0 0 50px rgba(134, 205, 255, 0.25);
+}
+
+/* Sunset and dusk */
+
+.hall-scene.dusk .window-sky {
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(71, 49, 132, 0.24),
+            rgba(218, 78, 91, 0.30),
+            rgba(255, 161, 73, 0.42),
+            transparent
+        );
+
+    box-shadow:
+        0 0 55px rgba(255, 91, 72, 0.25);
+}
+
+/* Nighttime */
+
+.hall-scene.nighttime .window-sky {
+    background:
+        radial-gradient(
+            circle at 68% 22%,
+            rgba(245, 245, 211, 0.72) 0,
+            rgba(245, 245, 211, 0.72) 3%,
+            transparent 4%
+        ),
+        radial-gradient(
+            circle at 25% 30%,
+            rgba(255, 255, 220, 0.75) 0,
+            rgba(255, 255, 220, 0.75) 1%,
+            transparent 2%
+        ),
+        radial-gradient(
+            circle at 45% 15%,
+            rgba(255, 255, 220, 0.65) 0,
+            rgba(255, 255, 220, 0.65) 1%,
+            transparent 2%
+        ),
+        radial-gradient(
+            circle at 80% 45%,
+            rgba(255, 255, 220, 0.60) 0,
+            rgba(255, 255, 220, 0.60) 1%,
+            transparent 2%
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(5, 18, 66, 0.45),
+            rgba(28, 25, 78, 0.28),
+            transparent
+        );
+
+    box-shadow:
+        0 0 45px rgba(65, 103, 214, 0.25);
+}
+
+
+/* ---------- WHOLE-ROOM LIGHTING ---------- */
+
+.room-lighting {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 2;
+
+    transition:
+        background-color 1.5s ease,
+        opacity 1.5s ease;
+}
+
+.hall-scene.sunrise .room-lighting {
+    background:
+        linear-gradient(
+            to right,
+            rgba(255, 129, 64, 0.06),
+            transparent 55%
+        );
+}
+
+.hall-scene.daytime .room-lighting {
+    background:
+        rgba(255, 241, 190, 0.025);
+}
+
+.hall-scene.dusk .room-lighting {
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(89, 34, 92, 0.08),
+            rgba(172, 66, 42, 0.06)
+        );
+}
+
+.hall-scene.nighttime .room-lighting {
+    background:
+        rgba(1, 7, 32, 0.17);
+}
+
+
+/* ---------- TEST LABEL ---------- */
+
+.time-label {
+    position: absolute;
+    left: 50%;
+    bottom: 1.5%;
+
+    transform: translateX(-50%);
+
+    padding: 7px 13px;
+
+    border: 1px solid rgba(255, 220, 138, 0.75);
+    border-radius: 20px;
+
+    background: rgba(20, 9, 4, 0.82);
+    color: #ffe7a2;
+
+    font-size: clamp(0.65rem, 1vw, 0.9rem);
+
+    pointer-events: none;
+
+    z-index: 7;
+}
+
+
+/* ---------- REDUCED MOTION ACCESSIBILITY ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .fire-flicker,
+    .fire-flicker::before,
+    .fire-flicker::after,
+    .dragon-life,
+    .dragon-life::after {
+        animation: none;
+    }
+}
 </style>
 
 </head>
