@@ -1025,6 +1025,43 @@ body {
     <img
         src="Jaylins hall.jpg"
         class
+<!-- Changing outside light -->
+
+<div
+    class="window-sky"
+    aria-hidden="true"
+></div>
+
+<div
+    class="room-lighting"
+    aria-hidden="true"
+></div>
+
+
+<!-- Animated fireplace glow -->
+
+<div
+    class="fire-flicker"
+    aria-hidden="true"
+></div>
+
+
+<!-- Dragon breathing and magical glow -->
+
+<div
+    class="dragon-life"
+    aria-hidden="true"
+></div>
+
+
+<!-- Temporary label used to test the time setting -->
+
+<div
+    class="time-label"
+    id="timeLabel"
+>
+    Checking the sky outside...
+</div>
 
         <!-- TOP BANNERS -->
 
@@ -1808,7 +1845,109 @@ function showTestMessage() {
         "This button works. Individual book pages will be added later."
     );
 }
+/* =====================================================
+   TIME-OF-DAY SYSTEM
 
+   This uses the current hour reported by the device
+   opening Jaylin's Hall.
+===================================================== */
+
+function updateHallTimeOfDay() {
+
+    const hallScene =
+        document.querySelector(".hall-scene");
+
+    const timeLabel =
+        document.getElementById("timeLabel");
+
+    const currentDate =
+        new Date();
+
+    const currentHour =
+        currentDate.getHours();
+
+    hallScene.classList.remove(
+        "sunrise",
+        "daytime",
+        "dusk",
+        "nighttime"
+    );
+
+    let timeClass;
+    let timeDescription;
+
+    /*
+       Sunrise:
+       5:00 a.m. through 7:59 a.m.
+    */
+
+    if (
+        currentHour >= 5 &&
+        currentHour < 8
+    ) {
+
+        timeClass = "sunrise";
+        timeDescription = "Sunrise over Jaylin's Hall";
+
+    /*
+       Daytime:
+       8:00 a.m. through 4:59 p.m.
+    */
+
+    } else if (
+        currentHour >= 8 &&
+        currentHour < 17
+    ) {
+
+        timeClass = "daytime";
+        timeDescription = "Daylight over Jaylin's Hall";
+
+    /*
+       Dusk:
+       5:00 p.m. through 7:59 p.m.
+    */
+
+    } else if (
+        currentHour >= 17 &&
+        currentHour < 20
+    ) {
+
+        timeClass = "dusk";
+        timeDescription = "Dusk settles over Jaylin's Hall";
+
+    /*
+       Night:
+       8:00 p.m. through 4:59 a.m.
+    */
+
+    } else {
+
+        timeClass = "nighttime";
+        timeDescription = "Nighttime at Jaylin's Hall";
+    }
+
+    hallScene.classList.add(timeClass);
+
+    timeLabel.textContent =
+        timeDescription;
+}
+
+
+/* Set the lighting when the page opens */
+
+updateHallTimeOfDay();
+
+
+/*
+   Check again once per minute.
+   This allows the hall to change if the page remains open.
+*/
+
+setInterval(
+    updateHallTimeOfDay,
+    60000
+);
+`
 </script>
 
 </body>
